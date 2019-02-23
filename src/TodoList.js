@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 
 class TodoList extends Component{
     constructor(props) {
@@ -6,7 +6,9 @@ class TodoList extends Component{
     }
     render() {
         return(
-            <div>TodoList</div>
+            <Fragment>
+                <div>TodoList</div>
+            </Fragment>
             )
     }
 }
