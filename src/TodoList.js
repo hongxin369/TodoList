@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import TodoItem from './TodoItem';
-import Test from './Test'
 import './index.css'
 
 class TodoList extends Component{
@@ -26,15 +25,15 @@ class TodoList extends Component{
                     className='input'
                     value={this.state.inputValue}
                     onChange={this.handleInputChange}
+                    ref={(input) => {this.input = input}}
                     />
                     <button
                       onClick={this.handleBtnClick}
                     >提交</button>
                 </div>
-                <ul>
+                <ul ref={(ul) => {this.ul = ul}}>
                   {this.getTodoItem()}
                 </ul>
-              {/* <Test content={this.state.inputValue}/> */}
             </Fragment>
             )
     }
@@ -53,15 +52,14 @@ class TodoList extends Component{
       )
     }
     handleInputChange(e) {
-        const value = e.target.value;
+        console.log(e.target);
+        console.log(this.input.value);
+        const value = this.input.value;
         this.setState(() => {
           return {
             inputValue: value
           }
         })
-        // this.setState({
-        //   inputValue: e.target.value
-        // })
     }
     handleBtnClick() {
       this.setState((prevState) => {  // prevState state修改之前的值
@@ -69,11 +67,9 @@ class TodoList extends Component{
           list: [...prevState.list, prevState.inputValue],
           inputValue: ''
         }
+      }, () => {
+          console.log(this.ul.querySelectorAll('div').length);
       });
-        // this.setState({
-        //   list: [...this.state.list, this.state.inputValue],
-        //   inputValue: ''
-        // })
     }
     handleItemDelete(index) {
       const list = [...this.state.list];
