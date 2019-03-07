@@ -34,7 +34,7 @@ class TodoList extends Component{
                 <ul>
                   {this.getTodoItem()}
                 </ul>
-              <Test content={this.state.inputValue}/>
+              {/* <Test content={this.state.inputValue}/> */}
             </Fragment>
             )
     }
