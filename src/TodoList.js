@@ -3,7 +3,10 @@ import { Input } from 'antd';
 import { Button } from 'antd';
 import { List } from 'antd';
 
-import store from './store/index'   // 引入仓库store
+import store from './store/index';   // 引入仓库store
+// import { ADD_TODO_ITEM, DELETE_TODO_ITEM} from './store/actionTypes';
+import {getInputChangeAction, getAddItemAction,getDeteleItemAction} from './store/actionCreators';
+
 import 'antd/dist/antd.css';
 
 
@@ -43,10 +46,11 @@ export default class TodoList extends Component {
   }
     handleInputChange(e) {
       // 创建action 固定格式
-      const action = {
-        type: 'change_input_value', // 描述要做怎样的事情
-        value: e.target.value     // 吧value传过去
-      };
+      // const action = {
+      //   type: CHANGE_INPUT_VALUE, // 描述要做怎样的事情
+      //   value: e.target.value     // 吧value传过去
+      // };
+      const action = getInputChangeAction(e.target.value);
       // 调用store中的dispatch()方法把action传过去
       store.dispatch(action);
     }
@@ -55,17 +59,19 @@ export default class TodoList extends Component {
       this.setState(store.getState())
     }
     handleBtnClick () {
-      const action = {
-        type: 'add_todo_item',
-      };
-      store.dispatch(action)
+      // const action = {
+      //   type: ADD_TODO_ITEM,
+      // };
+      const action = getAddItemAction()
+      store.dispatch(action);
     }
     // 删除方法
     handleItemDelete (index) {
-      const action = {
-        type: 'delete_todo_item',
-        index: index
-      };
+      // const action = {
+      //   type: DELETE_TODO_ITEM,
+      //   index: index
+      // };
+      const action = getDeteleItemAction(index);
       store.dispatch(action);
     }
 }
