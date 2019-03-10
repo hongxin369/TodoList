@@ -31,6 +31,7 @@ export default (state = defaultState, action) => {   // action 行动,作用
   if (action.type === INIT_LIST_ACTION) {
     const newState = JSON.parse(JSON.stringify(state));
     newState.list = action.data;
+    console.log(newState);
     return newState;
   }
   return state

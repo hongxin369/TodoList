@@ -1,5 +1,4 @@
-import {ADD_TODO_ITEM, CHANGE_INPUT_VALUE, DELETE_TODO_ITEM, INIT_LIST_ACTION} from "./actionTypes";
-import axios from 'axios';
+import {ADD_TODO_ITEM, CHANGE_INPUT_VALUE, DELETE_TODO_ITEM, INIT_LIST_ACTION, GET_INIT_LIST} from "./actionTypes";
 
 export const getInputChangeAction = (value) => {
   return (
@@ -32,13 +31,10 @@ export const initListAction = (data) => {
     }
   )
 };
-export const getTodoList = () => {
-  // 在创建action的时候会自动接收到一个dispatch ，可以直接使用
-  return (dispatch) => {
-    axios.get('http://localhost:8080/').then((res) => {
-      const data = res.data;
-      const action = initListAction(data);
-      dispatch(action);
-    })
-  }
+export const getInitList = () => {
+  return(
+    {
+      type: GET_INIT_LIST
+    }
+  )
 };

@@ -3,7 +3,8 @@ import TodoListUI from './TodoListUI'
 
 import store from './store/index';   // 引入仓库store
 // import { ADD_TODO_ITEM, DELETE_TODO_ITEM} from './store/actionTypes';
-import {getInputChangeAction, getAddItemAction,getDeleteItemAction, getTodoList} from './store/actionCreators';
+import {getInputChangeAction, getAddItemAction,getDeleteItemAction,getInitList} from './store/actionCreators';
+
 
 
 
@@ -31,8 +32,9 @@ export default class TodoList extends Component {
     )
   }
   componentDidMount() {
-    const action = getTodoList();
+    const action = getInitList();
     store.dispatch(action);
+
   }
 
   handleInputChange(e) {
